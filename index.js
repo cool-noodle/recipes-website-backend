@@ -29,8 +29,7 @@ const CategoryRoutes = require('./src/routes/categoryRoute');
 app.use('/api', ItemRoutes);
 app.use('/api', CategoryRoutes)
 
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
 
-export default app;
