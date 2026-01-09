@@ -9,17 +9,30 @@ const getSearchedItems = async (req, res) => {
     const { q } = req.query;
 
     try {
-        let items;
-        if (q) {
-            items = await Item.find({ name: { $regex: q, $options: 'i' } })
-        }
+        const filter = q ? { name: { $regex: q, $options: 'i' } } : {};
+        const items = await Item.find(filter);
 
         res.status(200).json(items);
 
     } catch (error) {
-        res.status(500).json({ message: "No items found" })
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
     }
+
+    // try {
+    //     let items;
+    //     if (q) {
+    //         items = await Item.find({ name: { $regex: q, $options: 'i' } })
+    //     }
+
+    //     res.status(200).json(items);
+
+    // } catch (error) {
+    //     res.status(500).json({ message: "No items found" })
+    // }
 }
+
+
 
 const getSingleItem = async (req, res) => {
     const { id } = req.params;
