@@ -8,8 +8,10 @@ const getAllItems = async (req, res) => {
 const getSearchedItems = async (req, res) => {
     const { q } = req.query;
 
+    console.log("Search query:", q);
+
     try {
-        let items;
+        let items = [];
         if (q) {
             items = await Item.find({ name: { $regex: q, $options: 'i' } })
         }
@@ -23,11 +25,12 @@ const getSearchedItems = async (req, res) => {
 
 const getSingleItem = async (req, res) => {
     const { id } = req.params;
+    
     try {
         const item = await Item.findById(id);
         res.json(item);
     } catch (error) {
-        req.status(500).json({ message: 'No items found' })
+        res.status(500).json({ message: 'No items found' })
     }
 }
 
