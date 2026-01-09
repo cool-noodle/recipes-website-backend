@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 async function main() {
-    await mongoose.connect(process.env.RECIPES_API_KEY);
+    await mongoose.connect(process.env.MONGODB_URI);
 
     app.get('/', (req, res) => {
         res.send('Veggify Recipe App Server is Running')
