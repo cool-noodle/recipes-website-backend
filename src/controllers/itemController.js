@@ -6,7 +6,7 @@ const getAllItems = async (req, res) => {
 }
 
 const getSearchedItems = async (req, res) => {
-    const { q } = req.query;
+    const { q } = req.query.q || req.query.query || '';
 
     try {
         const filter = q ? { name: { $regex: q, $options: 'i' } } : {};
@@ -31,8 +31,6 @@ const getSearchedItems = async (req, res) => {
     //     res.status(500).json({ message: "No items found" })
     // }
 }
-
-
 
 const getSingleItem = async (req, res) => {
     const { id } = req.params;
