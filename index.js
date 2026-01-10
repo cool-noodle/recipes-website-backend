@@ -6,10 +6,6 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-//mpl704mv
-//TzuxpOjQGMTCS8QI
-//hello
-
 app.use(express.json());
 app.use(cors());
 
@@ -21,7 +17,6 @@ mongoose.connect(process.env.MONGODB_URI)
 app.get('/', (req, res) => {
     res.send('Recipe App Server is Running')
 })
-
 
 // main().then(() => console.log('mongodb connected succeffuly!')).catch(err => console.log(err));
 
